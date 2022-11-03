@@ -4,28 +4,31 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.github.cesar1287.challengecstv.api.PandaScoreApi
 import com.github.cesar1287.challengecstv.model.Match
+import com.github.cesar1287.challengecstv.utils.PandaScoreApi.BEGIN_AT_FIELD
+import com.github.cesar1287.challengecstv.utils.PandaScoreApi.ITEMS_PER_PAGE
+import com.github.cesar1287.challengecstv.utils.PandaScoreApi.STARTING_PAGE_INDEX
+import com.github.cesar1287.challengecstv.utils.PandaScoreApi.STATUS_FIELD
 import okio.IOException
 import retrofit2.HttpException
-
-private const val PANDA_SCORE_STARTING_PAGE_INDEX = 1
 
 class MatchesPagingSource(
     private val service: PandaScoreApi
 ) : PagingSource<Int, Match>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Match> {
-        val pageIndex = params.key ?: PANDA_SCORE_STARTING_PAGE_INDEX
+        val pageIndex = params.key ?: STARTING_PAGE_INDEX
         return try {
             val response = service.getMatches(
                 page = pageIndex,
-                perPage = 25,
+                perPage = ITEMS_PER_PAGE,
                 range = "2021-11-03,2022-11-03",
-                sort = "-begin_at,status"
+                sort = "-$BEGIN_AT_FIELD,$STATUS_FIELD"
             )
             val nextKey = params.key?.plus(1)
+                ?: (STARTING_PAGE_INDEX + 1)
             LoadResult.Page(
                 data = response,
-                prevKey = if (pageIndex == PANDA_SCORE_STARTING_PAGE_INDEX) null else pageIndex,
+                prevKey = if (pageIndex == STARTING_PAGE_INDEX) null else pageIndex,
                 nextKey = nextKey
             )
         } catch (exception: IOException) {
