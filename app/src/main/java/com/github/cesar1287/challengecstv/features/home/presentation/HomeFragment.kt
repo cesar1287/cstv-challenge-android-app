@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.getMatches().collectLatest {
+            homeViewModel.getMatches().collect {
                 homeAdapter.submitData(it)
             }
         }

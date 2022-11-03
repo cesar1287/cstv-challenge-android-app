@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.databinding.MatchItemBinding
 import com.github.cesar1287.challengecstv.model.Match
 
@@ -38,6 +39,15 @@ class MoviePosterViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(match: Match?) {
-        binding.tvTeamName.text = match?.opponents?.first()?.opponent?.name
+        with(binding) {
+            tvMatchTeamA.text = itemView.context.getString(
+                R.string.league_series_label,
+                match?.league?.name,
+                match?.serie?.full_name
+            )
+
+            tvMatchTeamA.text = match?.opponents?.first()?.opponent?.name
+            tvMatchTeamB.text = match?.opponents?.last()?.opponent?.name
+        }
     }
 }
