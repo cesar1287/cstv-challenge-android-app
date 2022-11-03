@@ -1,0 +1,25 @@
+package com.github.cesar1287.challengecstv.features.home.di
+
+import com.github.cesar1287.challengecstv.features.home.data.HomeRepository
+import com.github.cesar1287.challengecstv.features.home.data.HomeRepositoryImpl
+import com.github.cesar1287.challengecstv.features.home.domain.HomeUseCase
+import com.github.cesar1287.challengecstv.features.home.domain.HomeUseCaseImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class HomeModule {
+
+    @Binds
+    abstract fun bindHomeRepository(
+        homeRepositoryImpl: HomeRepositoryImpl
+    ): HomeRepository
+
+    @Binds
+    abstract fun bindHomeUseCase(
+        homeUseCase: HomeUseCaseImpl
+    ): HomeUseCase
+}
