@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.databinding.MatchItemBinding
 import com.github.cesar1287.challengecstv.model.Match
+import com.github.cesar1287.challengecstv.utils.GlideApp
 
 class HomeAdapter : PagingDataAdapter<Match, MoviePosterViewHolder>(MovieDiffCallBack()) {
 
@@ -40,14 +41,21 @@ class MoviePosterViewHolder(
 
     fun bind(match: Match?) {
         with(binding) {
-            tvMatchTeamA.text = itemView.context.getString(
+            val teamA = match?.opponents?.first()?.opponent
+            val teamB = match?.opponents?.last()?.opponent
+
+            tvMatchLeagueSeries.text = itemView.context.getString(
                 R.string.league_series_label,
                 match?.league?.name,
                 match?.serie?.full_name
             )
 
-            tvMatchTeamA.text = match?.opponents?.first()?.opponent?.name
-            tvMatchTeamB.text = match?.opponents?.last()?.opponent?.name
+            tvMatchTeamA.text = teamA?.name
+            tvMatchTeamB.text = teamB?.name
+
+            GlideApp.with(itemView.context).load(teamA?.image_url).into(ivMatchTeamA)
+            GlideApp.with(itemView.context).load(teamB?.image_url).into(ivMatchTeamB)
+            GlideApp.with(itemView.context).load(match?.league?.image_url).into(ivMatchLeagueSeries)
         }
     }
 }
