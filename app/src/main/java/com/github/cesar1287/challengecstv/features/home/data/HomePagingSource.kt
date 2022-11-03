@@ -22,10 +22,9 @@ class MatchesPagingSource(
                 range = "2021-11-03,2022-11-03",
                 sort = "-begin_at,status"
             )
-            val movies = response
             val nextKey = params.key?.plus(1)
             LoadResult.Page(
-                data = movies,
+                data = response,
                 prevKey = if (pageIndex == PANDA_SCORE_STARTING_PAGE_INDEX) null else pageIndex,
                 nextKey = nextKey
             )
