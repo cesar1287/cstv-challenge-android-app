@@ -1,17 +1,17 @@
 package com.github.cesar1287.challengecstv.features.home.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -35,17 +35,40 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
+        collectUiState()
+    }
 
+    private fun collectUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.getMatches().collect {
+                homeAdapter.submitData(it)
+            }
+        }
+
+        homeAdapter.addLoadStateListener { loadState ->
+            binding?.let {
+                with(it) {
+                    // Only shows the list if refresh succeeds.
+                    gpHomeContent.isVisible = loadState.source.refresh is LoadState.NotLoading
+                    // Show loading spinner during initial load or refresh.
+                    pbHomeLoading.isVisible = loadState.source.refresh is LoadState.Loading
+                    // Show the retry state if initial load or refresh fails.
+                    btHomeTryAgain.isVisible = loadState.source.refresh is LoadState.Error
+                }
+            }
+        }
+    }
+
+    private fun setupView() {
         binding?.let {
             it.vgMatchesList.apply {
                 adapter = homeAdapter
                 layoutManager = LinearLayoutManager(context)
             }
-        }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.getMatches().collectLatest {
-                homeAdapter.submitData(it)
+            it.btHomeTryAgain.setOnClickListener {
+                homeAdapter.retry()
             }
         }
     }

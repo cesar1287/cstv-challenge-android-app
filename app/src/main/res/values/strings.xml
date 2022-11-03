@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Challenge CSTV</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="versus_label">vs</string>
+    <string name="league_series_label">%1$s - %2$s</string>
+    <string name="home_title">Partidas</string>
+    <string name="button_home_try_again">Ocorreu um erro, tente novamente</string>
 </resources>
