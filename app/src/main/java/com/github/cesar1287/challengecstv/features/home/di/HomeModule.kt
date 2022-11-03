@@ -1,7 +1,9 @@
-package com.github.cesar1287.challengeapptvmaze.features.home.di
+package com.github.cesar1287.challengecstv.features.home.di
 
-import com.github.cesar1287.challengeapptvmaze.features.home.data.HomeRepository
-import com.github.cesar1287.challengeapptvmaze.features.home.data.HomeRepositoryImpl
+import com.github.cesar1287.challengecstv.features.home.data.HomeRepository
+import com.github.cesar1287.challengecstv.features.home.data.HomeRepositoryImpl
+import com.github.cesar1287.challengecstv.features.home.domain.HomeUseCase
+import com.github.cesar1287.challengecstv.features.home.domain.HomeUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,9 @@ abstract class HomeModule {
     abstract fun bindHomeRepository(
         homeRepositoryImpl: HomeRepositoryImpl
     ): HomeRepository
+
+    @Binds
+    abstract fun bindHomeUseCase(
+        homeUseCase: HomeUseCaseImpl
+    ): HomeUseCase
 }

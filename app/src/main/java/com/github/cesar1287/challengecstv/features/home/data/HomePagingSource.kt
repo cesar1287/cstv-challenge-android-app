@@ -6,14 +6,12 @@ import com.github.cesar1287.challengecstv.api.PandaScoreApi
 import com.github.cesar1287.challengecstv.model.Match
 import okio.IOException
 import retrofit2.HttpException
-import javax.inject.Inject
 
 private const val PANDA_SCORE_STARTING_PAGE_INDEX = 1
 
-class MatchesPagingSource @Inject constructor(
+class MatchesPagingSource(
     private val service: PandaScoreApi
 ) : PagingSource<Int, Match>() {
-
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Match> {
         val pageIndex = params.key ?: PANDA_SCORE_STARTING_PAGE_INDEX
@@ -24,7 +22,7 @@ class MatchesPagingSource @Inject constructor(
                 range = "2021-11-03,2022-11-03",
                 sort = "-begin_at,status"
             )
-            val movies = response.matches
+            val movies = response
             val nextKey = params.key?.plus(1)
             LoadResult.Page(
                 data = movies,

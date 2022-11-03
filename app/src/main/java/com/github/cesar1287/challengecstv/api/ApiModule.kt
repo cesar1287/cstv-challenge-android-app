@@ -28,7 +28,6 @@ class ApiModule {
         pandaScoreRetrofitClient: Retrofit
     ): PandaScoreApi = pandaScoreRetrofitClient.create(PandaScoreApi::class.java)
 
-
     private fun getInterceptorClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) {
@@ -36,10 +35,11 @@ class ApiModule {
         }
 
         val interceptor = OkHttpClient.Builder()
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(AuthInterceptor())
 
         return interceptor.build()
     }
