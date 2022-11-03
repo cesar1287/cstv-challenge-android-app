@@ -26,7 +26,7 @@ android {
     productFlavors {
         dev {
             dimension "type"
-            buildConfigField 'String', 'BASE_URL', '"https://api.tvmaze.com/"'
+            buildConfigField 'String', 'BASE_URL', '"https://api.pandascore.co/"'
         }
 
         prod {
