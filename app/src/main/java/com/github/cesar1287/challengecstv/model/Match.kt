@@ -1,6 +1,6 @@
 package com.github.cesar1287.challengecstv.model
 
-data class MatchesItem(
+data class Match(
     val begin_at: String,
     val detailed_stats: Boolean,
     val draw: Boolean,

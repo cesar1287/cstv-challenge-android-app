@@ -12,6 +12,5 @@ data class Game(
     val match_id: Int,
     val position: Int,
     val status: String,
-    val winner: Winner,
     val winner_type: String
 )
