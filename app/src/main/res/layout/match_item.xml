@@ -19,6 +19,7 @@
             android:id="@+id/vgMatchVersusLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:text="@string/versus_label"
             android:textColor="@color/white_50"
             android:textSize="12sp"
@@ -32,17 +33,20 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="20dp"
+            android:background="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/vgMatchVersusLabel"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35" />
 
         <TextView
             android:id="@+id/tvMatchTeamA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
             android:textColor="@color/white"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="@id/ivMatchTeamA"
@@ -55,17 +59,20 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
+            android:background="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/vgMatchVersusLabel"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35" />
 
         <TextView
             android:id="@+id/tvMatchTeamB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
             android:textColor="@color/white"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="@id/ivMatchTeamB"
@@ -88,6 +95,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_margin="8dp"
+            android:background="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvMatchLeagueSeries"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,6 +105,7 @@
             android:id="@+id/tvMatchLeagueSeries"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:textColor="@color/white"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@id/ivMatchLeagueSeries"

@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
             }
 
             it.btHomeTryAgain.setOnClickListener {
-                homeAdapter.refresh()
+                homeAdapter.retry()
             }
         }
     }
