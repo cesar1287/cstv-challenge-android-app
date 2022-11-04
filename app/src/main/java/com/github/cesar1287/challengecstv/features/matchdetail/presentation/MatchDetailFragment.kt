@@ -4,19 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.cesar1287.challengecstv.R
+import com.github.cesar1287.challengecstv.base.BaseFragment
 import com.github.cesar1287.challengecstv.databinding.FragmentMatchDetailBinding
-import com.github.cesar1287.challengecstv.features.matchdetail.MatchDetailFragmentArgs
 import com.github.cesar1287.challengecstv.model.MatchVO
+import com.github.cesar1287.challengecstv.utils.Command
 import com.github.cesar1287.challengecstv.utils.GlideApp
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MatchDetailFragment : Fragment() {
+class MatchDetailFragment : BaseFragment() {
 
     private var binding: FragmentMatchDetailBinding? = null
 
@@ -40,6 +41,16 @@ class MatchDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupView()
+        setupObservables()
+    }
+
+    private fun setupObservables() {
+        matchDetailViewModel.command = command
+        matchDetailViewModel.getTeams(match.id, match.id)
+
+        matchDetailViewModel.onTeamsLoaded.observe(viewLifecycleOwner) {
+            it
+        }
     }
 
     private fun setupView() {
@@ -77,4 +88,6 @@ class MatchDetailFragment : Fragment() {
         super.onDestroyView()
         binding = null
     }
+
+    override var command: MutableLiveData<Command> = MutableLiveData()
 }
