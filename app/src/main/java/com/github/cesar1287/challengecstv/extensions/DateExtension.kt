@@ -10,6 +10,7 @@ private const val ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 private const val UTC_TIME_ZONE = "UTC"
 private const val MATCH_CARD_DATE_FORMAT = "dd.MM HH:mm"
 private const val MATCH_CARD_DATE_FORMAT_HOUR_ONLY = "HH:mm"
+private const val DAY_OF_WEEK_NAME = "EEE"
 
 fun Date.getRangeApiDate(): String {
     val simpleDateFormat = SimpleDateFormat(RANGE_API_DATE_FORMAT, Locale.getDefault())
@@ -30,7 +31,7 @@ fun String.getPrettyDate(): String {
         return if (isToday(userDate.time)) {
             "Hoje, ${matchCardHourOnlySimpleDateFormat.format(it)}"
         } else if(isThisWeek(userDate)) {
-            "${DateFormat.format("EEE", userDate)}, ${matchCardHourOnlySimpleDateFormat.format(userDate)}"
+            "${DateFormat.format(DAY_OF_WEEK_NAME, userDate)}, ${matchCardHourOnlySimpleDateFormat.format(userDate)}"
         } else {
             matchCardSimpleDateFormat.format(it)
         }
