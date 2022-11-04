@@ -42,9 +42,18 @@ class HomeViewHolder(
             tvMatchTeamA.text = matchVO?.teamAName
             tvMatchTeamB.text = matchVO?.teamBName
 
-            GlideApp.with(itemView.context).load(matchVO?.teamAImageUrl).into(ivMatchTeamA)
-            GlideApp.with(itemView.context).load(matchVO?.teamBImageUrl).into(ivMatchTeamB)
-            GlideApp.with(itemView.context).load(matchVO?.leagueImageUrl).into(ivMatchLeagueSeries)
+            GlideApp.with(itemView.context)
+                .load(matchVO?.teamAImageUrl)
+                .error(R.drawable.no_logo)
+                .into(ivMatchTeamA)
+            GlideApp.with(itemView.context)
+                .load(matchVO?.teamBImageUrl)
+                .error(R.drawable.no_logo)
+                .into(ivMatchTeamB)
+            GlideApp.with(itemView.context)
+                .load(matchVO?.leagueImageUrl)
+                .error(R.drawable.no_logo)
+                .into(ivMatchLeagueSeries)
 
             when(matchVO?.matchStatus) {
                 MatchStatus.RUNNING -> {
