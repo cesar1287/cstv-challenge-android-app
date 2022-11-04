@@ -1,6 +1,6 @@
 package com.github.cesar1287.challengecstv.model
 
-data class Serie(
+data class Series(
     val begin_at: String,
     val end_at: String?,
     val full_name: String,

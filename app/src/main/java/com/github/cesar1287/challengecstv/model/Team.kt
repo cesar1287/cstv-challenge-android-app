@@ -1,6 +1,6 @@
 package com.github.cesar1287.challengecstv.model
 
-data class OpponentX(
+data class Team(
     val acronym: Any?,
     val id: Int,
     val image_url: String?,
