@@ -1,13 +1,15 @@
-package com.github.cesar1287.challengecstv.features.matchdetail
+package com.github.cesar1287.challengecstv.features.matchdetail.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.databinding.FragmentMatchDetailBinding
+import com.github.cesar1287.challengecstv.features.matchdetail.MatchDetailFragmentArgs
 import com.github.cesar1287.challengecstv.model.MatchVO
 import com.github.cesar1287.challengecstv.utils.GlideApp
 
@@ -43,7 +45,6 @@ class MatchDetailFragment : Fragment() {
                     match.leagueName,
                     match.seriesName
                 )
-
                 tvMatchDetailHour.text = match.datePretty
                 tvMatchTeamA.text = match.teamAName
                 tvMatchTeamB.text = match.teamBName
@@ -58,6 +59,10 @@ class MatchDetailFragment : Fragment() {
                         .load(match.teamBImageUrl)
                         .error(R.drawable.no_logo)
                         .into(ivMatchTeamB)
+                }
+
+                ivMatchDetailBack.setOnClickListener {
+                    findNavController().popBackStack()
                 }
             }
         }
