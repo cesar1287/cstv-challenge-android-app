@@ -13,7 +13,9 @@ data class MatchVO(
     var teamBImageUrl: String?,
     var leagueName: String,
     var seriesName: String,
-    var leagueImageUrl: String?
+    var leagueImageUrl: String?,
+    var matchStatus: MatchStatus,
+    var datePretty: String
 ): Parcelable {
 
     companion object {
