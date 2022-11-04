@@ -9,5 +9,21 @@
         android:id="@+id/homeFragment"
         android:name="com.github.cesar1287.challengecstv.features.home.presentation.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_matchDetailFragment"
+            app:destination="@id/matchDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/matchDetailFragment"
+        android:name="com.github.cesar1287.challengecstv.features.matchdetail.MatchDetailFragment"
+        android:label="fragment_match_detail"
+        tools:layout="@layout/fragment_match_detail">
+
+        <argument
+            android:name="match"
+            app:nullable="false"
+            app:argType="com.github.cesar1287.challengecstv.model.MatchVO"/>
+    </fragment>
 </navigation>

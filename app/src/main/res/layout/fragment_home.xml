@@ -37,7 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="vgMatchesList, tvHomeTitle" />
+            app:constraint_referenced_ids="vgMatchesList, tvHomeTitle"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/tvHomeTitle"
@@ -61,7 +62,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvHomeTitle" />
+            app:layout_constraintTop_toBottomOf="@id/tvHomeTitle"
+            tools:itemCount="7"
+            tools:listitem="@layout/match_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
