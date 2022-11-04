@@ -1,15 +1,15 @@
 package com.github.cesar1287.challengecstv.features.matchdetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavArgs
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.databinding.FragmentMatchDetailBinding
 import com.github.cesar1287.challengecstv.model.MatchVO
+import com.github.cesar1287.challengecstv.utils.GlideApp
 
 class MatchDetailFragment : Fragment() {
 
@@ -32,6 +32,35 @@ class MatchDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+    }
+
+    private fun setupView() {
+        binding?.let {
+            with(it) {
+                tvMatchDetailLeagueSeries.text = getString(
+                    R.string.league_series_label,
+                    match.leagueName,
+                    match.seriesName
+                )
+
+                tvMatchDetailHour.text = match.datePretty
+                tvMatchTeamA.text = match.teamAName
+                tvMatchTeamB.text = match.teamBName
+
+                context?.let { contextNonNull ->
+                    GlideApp.with(contextNonNull)
+                        .load(match.teamAImageUrl)
+                        .error(R.drawable.no_logo)
+                        .into(ivMatchTeamA)
+
+                    GlideApp.with(contextNonNull)
+                        .load(match.teamBImageUrl)
+                        .error(R.drawable.no_logo)
+                        .into(ivMatchTeamB)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
