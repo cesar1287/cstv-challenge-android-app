@@ -12,7 +12,8 @@ import okio.IOException
 import retrofit2.HttpException
 
 class MatchesPagingSource(
-    private val service: PandaScoreApi
+    private val service: PandaScoreApi,
+    private val range: Pair<String, String>
 ) : PagingSource<Int, Match>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Match> {
@@ -21,7 +22,7 @@ class MatchesPagingSource(
             val response = service.getMatches(
                 page = pageIndex,
                 perPage = ITEMS_PER_PAGE,
-                range = "2021-11-03,2022-11-03",
+                range = "${range.first},${range.second}",
                 sort = "-$BEGIN_AT_FIELD,$STATUS_FIELD"
             )
             val nextKey = params.key?.plus(1)
