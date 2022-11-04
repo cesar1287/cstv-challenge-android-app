@@ -52,17 +52,11 @@ class HomeViewHolder(
                     ivMatchDate.isVisible = false
                     tvMatchDate.isVisible = false
                 }
-                MatchStatus.NOT_STARTED -> {
-                    ivMatchLiveNow.isVisible = false
-                    ivMatchDate.isVisible = true
-                    tvMatchDate.isVisible = true
-                    tvMatchDate.text = matchVO.datePretty
-                }
                 else -> {
                     ivMatchLiveNow.isVisible = false
                     ivMatchDate.isVisible = true
                     tvMatchDate.isVisible = true
-                    tvMatchDate.text = itemView.context.getString(R.string.match_item_ended_label)
+                    tvMatchDate.text = matchVO?.datePretty
                 }
             }
         }
