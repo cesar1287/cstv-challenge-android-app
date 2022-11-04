@@ -6,11 +6,11 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.databinding.MatchItemBinding
-import com.github.cesar1287.challengecstv.model.Match
+import com.github.cesar1287.challengecstv.model.MatchVO
 import com.github.cesar1287.challengecstv.utils.GlideApp
 
 class HomeAdapter :
-    PagingDataAdapter<Match, HomeViewHolder>(Match.DIFF_CALLBACK) {
+    PagingDataAdapter<MatchVO, HomeViewHolder>(MatchVO.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(
@@ -29,23 +29,20 @@ class HomeViewHolder(
     private val binding: MatchItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(match: Match?) {
+    fun bind(matchVO: MatchVO?) {
         with(binding) {
-            val teamA = match?.opponents?.first()?.opponent
-            val teamB = match?.opponents?.last()?.opponent
-
             tvMatchLeagueSeries.text = itemView.context.getString(
                 R.string.league_series_label,
-                match?.league?.name,
-                match?.serie?.fullName
+                matchVO?.leagueName,
+                matchVO?.seriesName
             )
 
-            tvMatchTeamA.text = teamA?.name
-            tvMatchTeamB.text = teamB?.name
+            tvMatchTeamA.text = matchVO?.teamAName
+            tvMatchTeamB.text = matchVO?.teamBName
 
-            GlideApp.with(itemView.context).load(teamA?.imageUrl).into(ivMatchTeamA)
-            GlideApp.with(itemView.context).load(teamB?.imageUrl).into(ivMatchTeamB)
-            GlideApp.with(itemView.context).load(match?.league?.imageUrl).into(ivMatchLeagueSeries)
+            GlideApp.with(itemView.context).load(matchVO?.teamAImageUrl).into(ivMatchTeamA)
+            GlideApp.with(itemView.context).load(matchVO?.teamBImageUrl).into(ivMatchTeamB)
+            GlideApp.with(itemView.context).load(matchVO?.leagueImageUrl).into(ivMatchLeagueSeries)
         }
     }
 }

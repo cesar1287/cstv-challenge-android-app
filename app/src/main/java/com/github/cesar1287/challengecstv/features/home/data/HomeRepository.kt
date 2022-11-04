@@ -5,22 +5,23 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.github.cesar1287.challengecstv.api.PandaScoreApi
 import com.github.cesar1287.challengecstv.extensions.getRangeApiDate
-import com.github.cesar1287.challengecstv.model.Match
+import com.github.cesar1287.challengecstv.model.MatchVO
 import com.github.cesar1287.challengecstv.utils.PandaScoreApi.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow
-import java.util.Calendar
+import java.util.*
 import javax.inject.Inject
 
 interface HomeRepository {
 
-    fun getMatches(): Flow<PagingData<Match>>
+    fun getMatches(): Flow<PagingData<MatchVO>>
 }
 
 class HomeRepositoryImpl @Inject constructor(
-    private val pandaScoreApi: PandaScoreApi
+    private val pandaScoreApi: PandaScoreApi,
+    private val homeMapper: HomeMapper
 ): HomeRepository {
 
-    override fun getMatches(): Flow<PagingData<Match>> {
+    override fun getMatches(): Flow<PagingData<MatchVO>> {
         return Pager(
             config = PagingConfig(
                 pageSize = ITEMS_PER_PAGE,
@@ -29,7 +30,8 @@ class HomeRepositoryImpl @Inject constructor(
         ) {
             MatchesPagingSource(
                 service = pandaScoreApi,
-                range = getApiDatesRange()
+                range = getApiDatesRange(),
+                homeMapper = homeMapper
             )
         }.flow
     }
