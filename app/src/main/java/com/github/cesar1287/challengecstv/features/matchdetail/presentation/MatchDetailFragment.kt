@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.cesar1287.challengecstv.R
@@ -12,7 +13,9 @@ import com.github.cesar1287.challengecstv.databinding.FragmentMatchDetailBinding
 import com.github.cesar1287.challengecstv.features.matchdetail.MatchDetailFragmentArgs
 import com.github.cesar1287.challengecstv.model.MatchVO
 import com.github.cesar1287.challengecstv.utils.GlideApp
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MatchDetailFragment : Fragment() {
 
     private var binding: FragmentMatchDetailBinding? = null
@@ -22,6 +25,8 @@ class MatchDetailFragment : Fragment() {
     private val match: MatchVO by lazy {
         args.match
     }
+
+    private val matchDetailViewModel: MatchDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
