@@ -11,8 +11,9 @@ import com.github.cesar1287.challengecstv.model.MatchStatus
 import com.github.cesar1287.challengecstv.model.MatchVO
 import com.github.cesar1287.challengecstv.utils.GlideApp
 
-class HomeAdapter :
-    PagingDataAdapter<MatchVO, HomeViewHolder>(MatchVO.DIFF_CALLBACK) {
+class HomeAdapter(
+    private val onMatchClicked: (MatchVO?) -> Unit
+) : PagingDataAdapter<MatchVO, HomeViewHolder>(MatchVO.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(
@@ -23,7 +24,7 @@ class HomeAdapter :
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onMatchClicked)
     }
 }
 
@@ -31,7 +32,7 @@ class HomeViewHolder(
     private val binding: MatchItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(matchVO: MatchVO?) {
+    fun bind(matchVO: MatchVO?, onMatchClicked: (MatchVO?) -> Unit) {
         with(binding) {
             tvMatchLeagueSeries.text = itemView.context.getString(
                 R.string.league_series_label,
@@ -67,6 +68,10 @@ class HomeViewHolder(
                     tvMatchDate.isVisible = true
                     tvMatchDate.text = matchVO?.datePretty
                 }
+            }
+
+            vgMatchCardContainer.setOnClickListener {
+                onMatchClicked(matchVO)
             }
         }
     }
