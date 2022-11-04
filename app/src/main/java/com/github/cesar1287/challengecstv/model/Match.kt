@@ -1,16 +1,19 @@
 package com.github.cesar1287.challengecstv.model
 
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Match(
-    val begin_at: String,
+    @SerializedName("begin_at")
+    val beginAt: String,
     val id: Int,
     val league: League,
-    val match_type: String,
-    val modified_at: String,
     val name: String,
     val opponents: List<Opponent>,
-    val original_scheduled_at: String,
-    val rescheduled: Boolean,
-    val scheduled_at: String,
-    val serie: Serie,
+    @SerializedName("scheduled_at")
+    val scheduledAt: String,
+    val serie: Series,
     val status: String,
-)
+): Parcelable

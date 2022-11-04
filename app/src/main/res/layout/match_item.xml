@@ -15,6 +15,42 @@
         android:layout_height="wrap_content"
         android:background="@color/match_card_background">
 
+        <ImageView
+            android:id="@+id/ivMatchLiveNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/match_time_live"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivMatchDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/match_time_date"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvMatchDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/ivMatchDate"
+            app:layout_constraintEnd_toEndOf="@id/ivMatchDate"
+            app:layout_constraintStart_toStartOf="@id/ivMatchDate"
+            app:layout_constraintTop_toTopOf="@id/ivMatchDate"
+            tools:text="Ter, 22:00"
+            tools:visibility="visible" />
+
         <TextView
             android:id="@+id/vgMatchVersusLabel"
             android:layout_width="wrap_content"

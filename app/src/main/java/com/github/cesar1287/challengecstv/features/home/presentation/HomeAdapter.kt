@@ -3,59 +3,46 @@ package com.github.cesar1287.challengecstv.features.home.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.databinding.MatchItemBinding
-import com.github.cesar1287.challengecstv.model.Match
+import com.github.cesar1287.challengecstv.model.MatchVO
 import com.github.cesar1287.challengecstv.utils.GlideApp
 
-class HomeAdapter : PagingDataAdapter<Match, MoviePosterViewHolder>(MovieDiffCallBack()) {
+class HomeAdapter :
+    PagingDataAdapter<MatchVO, HomeViewHolder>(MatchVO.DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePosterViewHolder {
-        return MoviePosterViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+        return HomeViewHolder(
             MatchItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
     }
 
-    override fun onBindViewHolder(holder: MoviePosterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 }
 
-class MovieDiffCallBack : DiffUtil.ItemCallback<Match>() {
-    override fun areItemsTheSame(oldItem: Match, newItem: Match): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: Match, newItem: Match): Boolean {
-        return oldItem == newItem
-    }
-}
-
-class MoviePosterViewHolder(
+class HomeViewHolder(
     private val binding: MatchItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(match: Match?) {
+    fun bind(matchVO: MatchVO?) {
         with(binding) {
-            val teamA = match?.opponents?.first()?.opponent
-            val teamB = match?.opponents?.last()?.opponent
-
             tvMatchLeagueSeries.text = itemView.context.getString(
                 R.string.league_series_label,
-                match?.league?.name,
-                match?.serie?.full_name
+                matchVO?.leagueName,
+                matchVO?.seriesName
             )
 
-            tvMatchTeamA.text = teamA?.name
-            tvMatchTeamB.text = teamB?.name
+            tvMatchTeamA.text = matchVO?.teamAName
+            tvMatchTeamB.text = matchVO?.teamBName
 
-            GlideApp.with(itemView.context).load(teamA?.image_url).into(ivMatchTeamA)
-            GlideApp.with(itemView.context).load(teamB?.image_url).into(ivMatchTeamB)
-            GlideApp.with(itemView.context).load(match?.league?.image_url).into(ivMatchLeagueSeries)
+            GlideApp.with(itemView.context).load(matchVO?.teamAImageUrl).into(ivMatchTeamA)
+            GlideApp.with(itemView.context).load(matchVO?.teamBImageUrl).into(ivMatchTeamB)
+            GlideApp.with(itemView.context).load(matchVO?.leagueImageUrl).into(ivMatchLeagueSeries)
         }
     }
 }
