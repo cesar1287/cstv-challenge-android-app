@@ -24,10 +24,10 @@ class HomeFragment : Fragment() {
 
     private val homeAdapter by lazy {
         HomeAdapter { match ->
-            match?.let {
+            match?.let { matchVO ->
                 findNavController().navigate(
                     HomeFragmentDirections
-                        .actionHomeFragmentToMatchDetailFragment(it)
+                        .actionHomeFragmentToMatchDetailFragment(matchVO)
                 )
             }
         }
