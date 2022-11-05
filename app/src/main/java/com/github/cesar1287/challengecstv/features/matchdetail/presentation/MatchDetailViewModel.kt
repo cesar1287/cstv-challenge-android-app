@@ -25,7 +25,8 @@ class MatchDetailViewModel @Inject constructor(
             callApi(
                 call = suspend { matchDetailUseCase.getTeams(teamAId, teamBId) },
                 onSuccess = {
-
+                    val data = it as? MutableList<*>
+                    _onTeamsLoaded.postValue(data?.filterIsInstance<TeamsResponseItem>())
                 }
             )
         }

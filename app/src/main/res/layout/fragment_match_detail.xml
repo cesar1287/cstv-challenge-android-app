@@ -120,4 +120,21 @@
         app:layout_constraintTop_toBottomOf="@id/tvMatchTeamA"
         tools:text="Hoje, 21:00" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMatchDetailTeamA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvMatchDetailHour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rvMatchDetailTeamB"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMatchDetailTeamB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/rvMatchDetailTeamA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rvMatchDetailTeamA"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

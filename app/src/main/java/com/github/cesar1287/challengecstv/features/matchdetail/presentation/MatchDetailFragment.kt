@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.cesar1287.challengecstv.R
 import com.github.cesar1287.challengecstv.base.BaseFragment
 import com.github.cesar1287.challengecstv.databinding.FragmentMatchDetailBinding
@@ -29,6 +30,10 @@ class MatchDetailFragment : BaseFragment() {
 
     private val matchDetailViewModel: MatchDetailViewModel by viewModels()
 
+    private val teamAAdapter by lazy {
+        TeamAAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,10 +51,10 @@ class MatchDetailFragment : BaseFragment() {
 
     private fun setupObservables() {
         matchDetailViewModel.command = command
-        matchDetailViewModel.getTeams(match.id, match.id)
+        matchDetailViewModel.getTeams(match.teamAId, match.teamBId)
 
         matchDetailViewModel.onTeamsLoaded.observe(viewLifecycleOwner) {
-            it
+            teamAAdapter.submitList(it.first().players)
         }
     }
 
@@ -79,6 +84,11 @@ class MatchDetailFragment : BaseFragment() {
 
                 ivMatchDetailBack.setOnClickListener {
                     findNavController().popBackStack()
+                }
+
+                rvMatchDetailTeamA.apply {
+                    adapter = teamAAdapter
+                    layoutManager = LinearLayoutManager(context)
                 }
             }
         }

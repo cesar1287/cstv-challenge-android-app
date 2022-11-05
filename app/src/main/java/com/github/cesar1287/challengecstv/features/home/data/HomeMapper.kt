@@ -21,8 +21,10 @@ class HomeMapperImpl @Inject constructor(): HomeMapper {
         val teamB = match.opponents.last().opponent
         return MatchVO(
             id = match.id,
+            teamAId = teamA.id,
             teamAName = teamA.name,
             teamAImageUrl = teamA.imageUrl,
+            teamBId = teamB.id,
             teamBName = teamB.name,
             teamBImageUrl = teamB.imageUrl,
             leagueName = match.league.name,
