@@ -34,6 +34,10 @@ class MatchDetailFragment : BaseFragment() {
         TeamAAdapter()
     }
 
+    private val teamBAdapter by lazy {
+        TeamBAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,6 +59,7 @@ class MatchDetailFragment : BaseFragment() {
 
         matchDetailViewModel.onTeamsLoaded.observe(viewLifecycleOwner) {
             teamAAdapter.submitList(it.first().players)
+            teamBAdapter.submitList(it.last().players)
         }
     }
 
@@ -88,6 +93,11 @@ class MatchDetailFragment : BaseFragment() {
 
                 rvMatchDetailTeamA.apply {
                     adapter = teamAAdapter
+                    layoutManager = LinearLayoutManager(context)
+                }
+
+                rvMatchDetailTeamB.apply {
+                    adapter = teamBAdapter
                     layoutManager = LinearLayoutManager(context)
                 }
             }

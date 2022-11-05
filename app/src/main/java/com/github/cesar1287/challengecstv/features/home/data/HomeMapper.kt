@@ -17,16 +17,16 @@ interface HomeMapper {
 class HomeMapperImpl @Inject constructor(): HomeMapper {
 
     override fun matchToMatchVO(match: Match): MatchVO {
-        val teamA = match.opponents.first().opponent
-        val teamB = match.opponents.last().opponent
+        val teamA = match.opponents.firstOrNull()?.opponent
+        val teamB = match.opponents.lastOrNull()?.opponent
         return MatchVO(
             id = match.id,
-            teamAId = teamA.id,
-            teamAName = teamA.name,
-            teamAImageUrl = teamA.imageUrl,
-            teamBId = teamB.id,
-            teamBName = teamB.name,
-            teamBImageUrl = teamB.imageUrl,
+            teamAId = teamA?.id ?: 0,
+            teamAName = teamA?.name ?: "",
+            teamAImageUrl = teamA?.imageUrl,
+            teamBId = teamB?.id ?: 0,
+            teamBName = teamB?.name ?: "",
+            teamBImageUrl = teamB?.imageUrl,
             leagueName = match.league.name,
             leagueImageUrl = match.league.imageUrl,
             seriesName = match.serie.fullName,
