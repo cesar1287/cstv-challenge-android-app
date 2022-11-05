@@ -23,15 +23,24 @@ android {
 
     flavorDimensions "type"
 
+    def cstvPropsFile = file('cstv.properties')
+    Properties versionProps = new Properties()
+
+    if (cstvPropsFile.canRead()) {
+        versionProps.load(new FileInputStream(cstvPropsFile))
+    }
+
     productFlavors {
         dev {
             dimension "type"
             buildConfigField 'String', 'BASE_URL', '"https://api.pandascore.co/"'
+            buildConfigField 'String', 'API_TOKEN', versionProps['DEV_PANDA_SCORE_TOKEN_API']
         }
 
         prod {
             dimension "type"
             buildConfigField 'String', 'BASE_URL', '"url.prod.com"'
+            buildConfigField 'String', 'API_TOKEN', '"xpto-prod-token-api"'
         }
     }
 

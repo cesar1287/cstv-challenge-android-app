@@ -9,4 +9,5 @@ object PandaScoreApi {
     const val STATUS_NOT_PLAYED = "not_played"
     const val STATUS_NOT_STARTED = "not_started"
     const val STATUS_RUNNING = "running"
+    const val AUTHORIZATION_FIELD = "Authorization"
 }
