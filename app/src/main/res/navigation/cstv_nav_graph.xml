@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cstv_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.github.cesar1287.challengecstv.features.home.presentation.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_matchDetailFragment"
             app:destination="@id/matchDetailFragment" />
@@ -23,7 +23,19 @@
 
         <argument
             android:name="match"
-            app:nullable="false"
-            app:argType="com.github.cesar1287.challengecstv.model.MatchVO"/>
+            app:argType="com.github.cesar1287.challengecstv.model.MatchVO"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.github.cesar1287.challengecstv.features.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/cstv_nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
