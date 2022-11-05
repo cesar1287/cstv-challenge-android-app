@@ -7,10 +7,10 @@ import com.github.cesar1287.challengecstv.features.matchdetail.domain.MatchDetai
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class MatchDetailModule {
 
     @Binds
@@ -22,9 +22,4 @@ abstract class MatchDetailModule {
     abstract fun bindMatchDetailUseCase(
         matchDetailUseCase: MatchDetailUseCaseImpl
     ): MatchDetailUseCase
-
-//    @Binds
-//    abstract fun bindHomeMapper(
-//        homeMapper: HomeMapperImpl
-//    ): HomeMapper
 }
