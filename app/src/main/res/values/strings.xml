@@ -5,4 +5,5 @@
     <string name="home_title">Partidas</string>
     <string name="button_home_try_again">Ocorreu um erro, tente novamente</string>
     <string name="match_item_ended_label">Encerrado</string>
+    <string name="error_default">Erro, algo inesperado aconteceu, tente novamente!</string>
 </resources>
