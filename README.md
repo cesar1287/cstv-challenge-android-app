@@ -18,3 +18,6 @@
 * ViewModel
 * Navigation
 * Hilt
+
+###
+ * Added debug apk version at `cstv-challenge-android-app/app/release/` for testing purposes
