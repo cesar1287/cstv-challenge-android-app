@@ -30,11 +30,7 @@ class TeamBAdapter :
             player: Player?
         ) = with(binding) {
             player?.let {
-                tvTeamPlayerName.text = itemView.context.getString(
-                    R.string.player_full_name,
-                    player.first_name,
-                    player.last_name
-                )
+                tvTeamPlayerName.text = player.first_name
                 tvTeamPlayerNickname.text = player.name
                 GlideApp.with(itemView.context)
                     .load(player.image_url)
