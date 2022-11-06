@@ -7,5 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class TeamsVO(
     val teamA: List<Player>?,
     val teamB: List<Player>?,
-    val noTeamsResponse: Boolean
+    val noTeamsResponse: Boolean,
+    val firstTeamId: Int?,
+    val secondTeamId: Int?
 ): Parcelable
