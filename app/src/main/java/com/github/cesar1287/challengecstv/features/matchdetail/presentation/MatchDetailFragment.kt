@@ -75,7 +75,14 @@ class MatchDetailFragment : BaseFragment() {
                     binding?.pbMatchDetailPlayer?.isVisible = it.value
                 }
                 is Command.Error -> {
-
+                    binding?.let { bindingNonNull ->
+                        with(bindingNonNull) {
+                            gpErrorContent.isVisible = true
+                            pbMatchDetailPlayer.isVisible = false
+                            rvMatchDetailTeamA.isVisible = false
+                            rvMatchDetailTeamB.isVisible = false
+                        }
+                    }
                 }
             }
         }
@@ -117,6 +124,14 @@ class MatchDetailFragment : BaseFragment() {
                 rvMatchDetailTeamB.apply {
                     adapter = teamBAdapter
                     layoutManager = LinearLayoutManager(context)
+                }
+
+                btMatchDetailErrorPlayers.setOnClickListener {
+                    matchDetailViewModel.getTeams(match.teamAId, match.teamBId)
+                    gpErrorContent.isVisible = false
+                    pbMatchDetailPlayer.isVisible = true
+                    rvMatchDetailTeamA.isVisible = false
+                    rvMatchDetailTeamB.isVisible = false
                 }
             }
         }

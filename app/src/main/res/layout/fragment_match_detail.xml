@@ -155,4 +155,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvMatchDetailHour" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gpErrorContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tvMatchDetailErrorPlayers, btMatchDetailErrorPlayers" />
+
+    <TextView
+        android:id="@+id/tvMatchDetailErrorPlayers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:text="@string/error_loading_players"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/btMatchDetailErrorPlayers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMatchDetailHour"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btMatchDetailErrorPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/try_again_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMatchDetailHour" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
