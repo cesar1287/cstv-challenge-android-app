@@ -61,12 +61,14 @@ class MatchDetailFragment : BaseFragment() {
         matchDetailViewModel.onTeamsLoaded.observe(viewLifecycleOwner) {
             binding?.let { bindingNonNull ->
                 with(bindingNonNull) {
-                    rvMatchDetailTeamA.isVisible = true
-                    rvMatchDetailTeamB.isVisible = true
+                    if (it?.noTeamsResponse == false) {
+                        rvMatchDetailTeamA.isVisible = true
+                        rvMatchDetailTeamB.isVisible = true
+                        teamAAdapter.submitList(it.teamA)
+                        teamBAdapter.submitList(it.teamB)
+                    }
                 }
             }
-            teamAAdapter.submitList(it.first().players)
-            teamBAdapter.submitList(it.last().players)
         }
 
         matchDetailViewModel.command.observe(viewLifecycleOwner) {
