@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
@@ -58,8 +59,25 @@ class MatchDetailFragment : BaseFragment() {
         matchDetailViewModel.getTeams(match.teamAId, match.teamBId)
 
         matchDetailViewModel.onTeamsLoaded.observe(viewLifecycleOwner) {
+            binding?.let { bindingNonNull ->
+                with(bindingNonNull) {
+                    rvMatchDetailTeamA.isVisible = true
+                    rvMatchDetailTeamB.isVisible = true
+                }
+            }
             teamAAdapter.submitList(it.first().players)
             teamBAdapter.submitList(it.last().players)
+        }
+
+        matchDetailViewModel.command.observe(viewLifecycleOwner) {
+            when(it) {
+                is Command.Loading -> {
+                    binding?.pbMatchDetailPlayer?.isVisible = it.value
+                }
+                is Command.Error -> {
+
+                }
+            }
         }
     }
 
