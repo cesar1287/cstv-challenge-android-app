@@ -29,7 +29,9 @@ class MatchDetailRepositoryImpl @Inject constructor(
                 } ?: TeamsVO(
                     teamA = null,
                     teamB = null,
-                    noTeamsResponse = true
+                    noTeamsResponse = true,
+                    firstTeamId = 0,
+                    secondTeamId = 0
                 )
                 response
             }

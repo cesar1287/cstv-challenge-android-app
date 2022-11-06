@@ -8,4 +8,5 @@
     <string name="error_default">Erro, algo inesperado aconteceu, tente novamente!</string>
     <string name="try_again_label">Tentar novamente</string>
     <string name="error_loading_players">Ocorreu um erro ao carregar os players, tente novamente!</string>
+    <string name="player_full_name">%1$s %2$s</string>
 </resources>

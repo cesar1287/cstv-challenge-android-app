@@ -30,8 +30,12 @@ class TeamAAdapter :
             player: Player?
         ) = with(binding) {
             player?.let {
-                tvTeamPlayerName.text = player.name
-                tvTeamPlayerNickname.text = player.first_name
+                tvTeamPlayerName.text = itemView.context.getString(
+                    R.string.player_full_name,
+                    player.first_name,
+                    player.last_name
+                )
+                tvTeamPlayerNickname.text = player.name
                 GlideApp.with(itemView.context)
                     .load(player.image_url)
                     .error(R.drawable.no_logo)

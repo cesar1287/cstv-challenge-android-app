@@ -16,7 +16,9 @@ class MatchDetailMapperImpl @Inject constructor(): MatchDetailMapper {
             teamA = teamsResponse.firstOrNull()?.players,
             teamB = teamsResponse.lastOrNull()?.players,
             noTeamsResponse = teamsResponse.firstOrNull()?.players?.isEmpty() == true &&
-                    teamsResponse.lastOrNull()?.players?.isEmpty() == true
+                    teamsResponse.lastOrNull()?.players?.isEmpty() == true,
+            firstTeamId = teamsResponse.firstOrNull()?.id,
+            secondTeamId = teamsResponse.lastOrNull()?.id
         )
     }
 

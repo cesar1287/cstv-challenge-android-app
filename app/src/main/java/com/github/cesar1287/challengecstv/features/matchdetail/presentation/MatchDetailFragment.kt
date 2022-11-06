@@ -64,8 +64,18 @@ class MatchDetailFragment : BaseFragment() {
                     if (it?.noTeamsResponse == false) {
                         rvMatchDetailTeamA.isVisible = true
                         rvMatchDetailTeamB.isVisible = true
-                        teamAAdapter.submitList(it.teamA)
-                        teamBAdapter.submitList(it.teamB)
+
+                        if (match.teamAId == it.firstTeamId) {
+                            teamAAdapter.submitList(it.teamA)
+                        } else {
+                            teamAAdapter.submitList(it.teamB)
+                        }
+
+                        if (match.teamBId == it.secondTeamId) {
+                            teamBAdapter.submitList(it.teamB)
+                        } else {
+                            teamBAdapter.submitList(it.teamA)
+                        }
                     }
                 }
             }
