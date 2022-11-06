@@ -24,7 +24,7 @@ class MatchesPagingSource(
                 page = pageIndex,
                 perPage = ITEMS_PER_PAGE,
                 range = "${range.first},${range.second}",
-                sort = "-$BEGIN_AT_FIELD,$STATUS_FIELD"
+                sort = "-$STATUS_FIELD,-$BEGIN_AT_FIELD"
             )
             val nextKey = params.key?.plus(1)
                 ?: (STARTING_PAGE_INDEX + 1)
